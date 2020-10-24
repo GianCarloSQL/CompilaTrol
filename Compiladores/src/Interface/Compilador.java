@@ -362,19 +362,20 @@ public class Compilador extends javax.swing.JFrame {
 
     private void compila() throws IOException {
         Lexico lexico = new Lexico();
-        lexico.setInput(textEditor.getText());
+        String input = textEditor.getText();
+        lexico.setInput(input);
         int linha = 1;
         String Saida = "linha   classe          lexema \n";
         try {
-            
+
             Token t = null;
             while ((t = lexico.nextToken()) != null) {
-                System.out.println(t.getLexeme());
-                if (t.getLexeme().equalsIgnoreCase("\n")) {
-                    linha++;
-                }
-                
-                Saida += linha + " " + t.getClasse() + " " + t.getLexeme() + "\n";
+                String lexeme = t.getLexeme();
+                String classe = t.getClasse();
+                System.out.println(lexeme);
+                linha = getLine(input, t.getPosition());
+
+                Saida += linha + " " + classe + " " + lexeme + "\n";
                 // só escreve o lexema
                 // necessário escrever t.getId (classe), t.getPosition() (não a linha, mas a posição inicial do lexema dentro do editor)
                 // no entanto, t.getId () - retorna o identificador da classe e deve ser apresentada a
@@ -384,21 +385,25 @@ public class Compilador extends javax.swing.JFrame {
                 // esse código apresenta os tokens enquanto não ocorrer erro
                 // no entanto, os tokens devem ser apresentados SÓ se não ocorrer erro, tem que adaptar	
             }
-            
+
             textMensagens.setText(Saida);
             System.out.println(Saida);
         } catch (LexicalError e) {  // tratamento de erros
             System.err.println(e.getMessage() + " em    " + linha);
-            textMensagens.setText("Erro na linha " + linha + " - " + e.getMessage());
+            textMensagens.setText("Erro na linha " + getLine(input, e.getPosition()) + " - "  + e.getMessage());
             // e.getMessage() - retorna a mensagem de erro de SCANNER_ERRO (olhar ScannerConstants.java e 
             // adaptar conforme o enunciado da parte 2)
 
             // e.getPosition() - retorna a posição inicial do erro, tem que adaptar para mostrar a linha
             // quando o erro for do tipo "símbolo inválido", tem que mostrar também o símbolo
             // que causou o erro 	
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    private int getLine(String input, int position) {
+        return input.substring(0, position).split("\n").length;
     }
 
     private void sobre() {
