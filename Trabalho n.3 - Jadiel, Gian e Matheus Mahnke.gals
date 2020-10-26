@@ -14,9 +14,9 @@ min: [a-z]
 
 dig: [0-9]
 
-inteiro: dig+
+inteiro: {dig}+
 
-fracionario: \. inteiro
+fracionario: \. {inteiro}
 
 str_simples: ' [^'\n\\]* '
 
