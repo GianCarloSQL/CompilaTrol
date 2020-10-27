@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/LexicalError.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/SyntaticError.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/Lexico.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/SemanticError.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/Token.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/NumberedBorder.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/Compilador.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/Constants.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/ScannerConstants.java</file>
-            <file>file:/C:/Users/gianc/Documents/NetBeansProjects/Compiladores/src/Interface/AnalysisError.java</file>
+            <file>file:/D:/repos/CompilaTrol/Compiladores/src/Interface/NumberedBorder.java</file>
+            <file>file:/D:/repos/CompilaTrol/Compiladores/src/Interface/ScannerConstants.java</file>
+            <file>file:/D:/repos/CompilaTrol/Compiladores/src/Interface/Compilador.java</file>
+            <file>file:/D:/repos/CompilaTrol/Compiladores/src/Interface/Lexico.java</file>
+            <file>file:/D:/repos/CompilaTrol/Compiladores/src/Interface/AnalysisError.java</file>
+            <file>file:/D:/repos/CompilaTrol/Compiladores/src/Interface/LexicalError.java</file>
+            <file>file:/D:/repos/CompilaTrol/Compiladores/src/Interface/Constants.java</file>
         </group>
     </open-files>
 </project-private>

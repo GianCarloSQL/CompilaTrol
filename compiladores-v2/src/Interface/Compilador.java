@@ -361,53 +361,68 @@ public class Compilador extends javax.swing.JFrame {
     }
 
     private void compila() throws IOException {
+
         Lexico lexico = new Lexico();
+        Sintatico sintatico = new Sintatico();
+        Semantico semantico = new Semantico();
+//...
+
         String input = textEditor.getText();
         lexico.setInput(input);
         int linha = 1;
-        String Saida = "linha   classe          lexema \n";
+        String Saida = "";//"linha   classe          lexema \n";
+
+        boolean ehVazio = false;
         try {
+            ehVazio = ehTextoVazio(input);
+            if (ehVazio) {
+                textMensagens.setText("Nenhum programa para compilar");
+            } else {
 
-            Token t = null;
-            while ((t = lexico.nextToken()) != null) {
-                String lexeme = t.getLexeme();
-                String classe = t.getClasse();
-                System.out.println(lexeme);
-                linha = getLine(input, t.getPosition());
+                sintatico.parse(lexico, semantico);
 
-                Saida += linha + " " + classe + " " + lexeme + "\n";
-                // só escreve o lexema
-                // necessário escrever t.getId (classe), t.getPosition() (não a linha, mas a posição inicial do lexema dentro do editor)
-                // no entanto, t.getId () - retorna o identificador da classe e deve ser apresentada a
-                // classe por extenso (olhar Constants.java e adaptar)
-                // no entanto, t.getPosition () - retorna a posição inicial do lexema, tem que adaptar para  
-                // mostrar a linha
-                // esse código apresenta os tokens enquanto não ocorrer erro
-                // no entanto, os tokens devem ser apresentados SÓ se não ocorrer erro, tem que adaptar	
+                Saida += "programa compilado com sucesso";
+                textMensagens.setText(Saida);
+                System.out.println(Saida);
             }
-
-            textMensagens.setText(Saida);
-            System.out.println(Saida);
         } catch (LexicalError e) {  // tratamento de erros
             System.err.println(e.getMessage() + " em    " + linha);
-            textMensagens.setText("Erro na linha " + getLine(input, e.getPosition()) + " - "  + e.getMessage());
+            textMensagens.setText("Erro na linha " + getLine(input, e.getPosition()) + " - " + e.getMessage());
             // e.getMessage() - retorna a mensagem de erro de SCANNER_ERRO (olhar ScannerConstants.java e 
             // adaptar conforme o enunciado da parte 2)
 
             // e.getPosition() - retorna a posição inicial do erro, tem que adaptar para mostrar a linha
             // quando o erro for do tipo "símbolo inválido", tem que mostrar também o símbolo
             // que causou o erro 	
+        } catch (SyntaticError e) {
+            textMensagens.setText("Erro na linha " + getLine(input, e.getPosition()) + " - encontrado " + sintatico.currentToken.getLexeme() + " esperado " + e.getMessage());
+            System.out.println(e);
+        } catch (SemanticError e) {
+            System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     private int getLine(String input, int position) {
-        return input.substring(0, position).split("\n").length;
+        return "".equals(input.substring(0, position)) ? 1 : input.substring(0, position).split("\n").length;
+    }
+
+    private boolean ehTextoVazio(String input) {
+        for (String s : input.split("\n")) {
+            for (String espaco : s.split(" ")) {
+                for (String tab : espaco.split("\t")) {
+                    if (!tab.isEmpty()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     private void sobre() {
-        textMensagens.setText("Gian Carlo Giovanella, jadiel Dos Santos e Matheus Mahnke");
+        textMensagens.setText("Gian Carlo Giovanella, Jadiel Dos Santos e Matheus Mahnke");
     }
 
     private void inicializaTeclasAtalho() {
