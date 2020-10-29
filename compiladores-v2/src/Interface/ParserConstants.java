@@ -115,9 +115,9 @@ public interface ParserConstants {
                 "",
                 "EOF", //"Era esperado fim de programa",
                 "identificador", //Era esperado id", 
-                "int", //"Era esperado cint", 
-                "float", //"Era esperado cfloat",
-                "str", //"Era esperado cstr",
+                "constante int", //"Era esperado cint",   //constante
+                "constante float", //"Era esperado cfloat", //constante
+                "constante str", //"Era esperado cstr",  //constante
                 "and", //"Era esperado and",
                 "or", //"Era esperado or",
                 "not", //"Era esperado not",
@@ -129,12 +129,12 @@ public interface ParserConstants {
                 "range", //"Era esperado range",
                 "while", //"Era esperado while",
                 "end", //"Era esperado end",
-                "false", //"Era esperado false",
-                "true", //"Era esperado true",
+                "true", //"Era esperado false",   //constante
+                "false", //"Era esperado true",   //constante
                 "input", //"Era esperado input",
-                "int", //"Era esperado int",
-                "float", //"Era esperado float",
-                "str", //"Era esperado str",
+                "tipo", //"Era esperado int",    //tipo
+                "tipo", //"Era esperado float",    //tipo
+                "tipo", //"Era esperado str",    //tipo
                 "print", //"Era esperado print",
                 "(", //"Era esperado \"(\"",
                 ")", //"Era esperado \")\"",
@@ -155,33 +155,33 @@ public interface ParserConstants {
                 "=", //"Era esperado \"=\"",
                 "+=", //"Era esperado \"+=\"",
                 "-=", //"Era esperado \"-=\"",
-                "uma expressão",//"<programa> inv�lido",
-                "uma expressão",//"<lista_comandos> inv�lido",
-                "uma expressão",//"<lista_comandos1> inv�lido",
-                "uma expressão",//"<comando> inv�lido",
-                "uma expressão",//"<comando1> inv�lido",
-                "uma expressão",//"<comando2> inv�lido",
-                "uma expressão",//"<entrada_dados1> inv�lido",
-                "uma expressão",//"<entrada> inv�lido",
+                "id, if, for, while, print",//"<programa> inv�lido",
+                "id, if, for, while, print",//"<lista_comandos> inv�lido",
+                "EOF, id, if, elif, else, for, while, end, print",//"<lista_comandos1> inv�lido",
+                "id, if, while, print",//"<comando> inv�lido",
+                "=, +=, -=",//"<comando1> inv�lido",
+                "identificador, tipo, constante, not, (, +, -",//"<comando2> inv�lido",
+                "input, int, float, str",//"<entrada_dados1> inv�lido",
+                "constante str, )",//"<entrada> inv�lido",
                 "tipo", //"<tipo> inv�lido",
-                "uma expressão",//"<saida_dados> inv�lido",
-                "uma expressão", //"<lista_expressoes> inv�lido",
-                "uma expressão", //"<lista_expressoes1> inv�lido",
-                "uma expressão",//"<selecao> inv�lido",
-                "uma expressão",//"<senao_se> inv�lido",
-                "uma expressão",//"<senao> inv�lido",
-                "uma expressão",//"<repeticao> inv�lido",
-                "uma expressão",//"<repeticao1> inv�lido",
-                "uma expressão",//"<expressao> inv�lido",
-                "uma expressão",//"<expressao_> inv�lido",
-                "uma expressão",//"<elemento> inv�lido",
-                "uma expressão",//"<relacional> inv�lido",
-                "uma expressão",//"<relacional1> inv�lido",
-                "uma expressão",//"<operador_relacional> inv�lido",
-                "uma expressão",//"<aritmetica> inv�lido",
-                "uma expressão",//"<aritmetica_> inv�lido",
-                "uma expressão",//"<termo> inv�lido",
-                "uma expressão",//"<termo_> inv�lido",
-                "uma expressão",//"<fator> inv�lido"
+                "print",//"<saida_dados> inv�lido",
+                "esperado uma expressão", //"<lista_expressoes> inv�lido",
+                "), ','", //"<lista_expressoes1> inv�lido",
+                "if",//"<selecao> inv�lido",
+                "elif, else, endif",//"<senao_se> inv�lido",
+                "else, end",//"<senao> inv�lido",
+                "for, while",//"<repeticao> inv�lido",
+                "id, range",//"<repeticao1> inv�lido",
+                "esperado uma expressão",//"<expressao> inv�lido",
+                "esperado uma expressão",//"<expressao_> inv�lido", // espressao
+                "esperado uma expressão",//"<elemento> inv�lido", // espressao
+                "esperado uma expressão",//"<relacional> inv�lido", // espressao
+                "esperado uma expressão",//"<relacional1> inv�lido", // espressao
+                "esperado uma expressão",//"<operador_relacional> inv�lido", // espressao
+                "esperado uma expressão",//"<aritmetica> inv�lido", // espressao
+                "esperado uma expressão",//"<aritmetica_> inv�lido",  // espressao
+                "esperado uma expressão",//"<termo> inv�lido",  // espressao
+                "esperado uma expressão",//"<termo_> inv�lido",  // espressao
+                "esperado uma expressão",//"<fator> inv�lido"  // espressao
             };
 }
