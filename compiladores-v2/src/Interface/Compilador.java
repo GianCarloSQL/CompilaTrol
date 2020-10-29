@@ -395,7 +395,7 @@ public class Compilador extends javax.swing.JFrame {
             // quando o erro for do tipo "símbolo inválido", tem que mostrar também o símbolo
             // que causou o erro 	
         } catch (SyntaticError e) {
-            textMensagens.setText("Erro na linha " + getLine(input, e.getPosition()) + " - encontrado " + sintatico.currentToken.getLexeme() + " esperado " + e.getMessage());
+            textMensagens.setText("Erro na linha " + getLine(input, e.getPosition()) + " - encontrado " + sintatico.currentToken.getLexeme() + " " + e.getMessage());
             System.out.println(e);
         } catch (SemanticError e) {
             System.out.println(e);
