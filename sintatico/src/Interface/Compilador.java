@@ -384,7 +384,6 @@ public class Compilador extends javax.swing.JFrame {
                 Saida += "programa compilado com sucesso";
                 textMensagens.setText(Saida);
                 System.out.println(Saida);
-                salvarBuild(semantico.codigo);
             }
         } catch (LexicalError e) {  // tratamento de erros
             System.err.println(e.getMessage() + " em    " + linha);
@@ -402,29 +401,6 @@ public class Compilador extends javax.swing.JFrame {
             System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);
-        }
-    }
-
-    private void salvarBuild(String code) {
-        JFileChooser jfc = new JFileChooser();
-        jfc.setDialogTitle("salvar");
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("il", "TXT");
-        jfc.setFileFilter(filtro);
-        int returnVal = jfc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            file = jfc.getSelectedFile();
-            textStatus.setText("Arquivo selecionado: " + file.getName() + "          "
-                    + "Diretorio: " + file.getParent());
-            textMensagens.setText("");
-
-            try {
-                FileWriter fw = new FileWriter(file.getPath());
-                    fw.write(code);
-                fw.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
         }
     }
 
