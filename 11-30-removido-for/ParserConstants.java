@@ -1,5 +1,3 @@
-package Interface;
-
 public interface ParserConstants
 {
     int START_SYMBOL = 40;
@@ -106,74 +104,74 @@ public interface ParserConstants
         {  30,  66,  75 }
     };
 
-    String[] PARSER_ERROR
-            = {
-                "",
-                "esperado EOF", //"Era esperado fim de programa",
-                "esperado identificador", //Era esperado id", 
-                "esperada constante", //"Era esperado cint",   //constante
-                "esperada constante", //"Era esperado cfloat", //constante
-                "esperada constante", //"Era esperado cstr",  //constante
-                "esperado and", //"Era esperado and",
-                "esperado or", //"Era esperado or",
-                "esperado not", //"Era esperado not",
-                "esperado if", //"Era esperado if",
-                "esperado elif", //"Era esperado elif",
-                "esperado else", //"Era esperado else",
-                "esperado while", //"Era esperado while",
-                "esperado end", //"Era esperado end",
-                "esperada constante", //"Era esperado false",   //constante
-                "esperada constante", //"Era esperado true",   //constante
-                "esperado input", //"Era esperado input",
-                "esperado tipo", //"Era esperado int",    //tipo
-                "esperado tipo", //"Era esperado float",    //tipo
-                "esperado tipo", //"Era esperado str",    //tipo
-                "esperado print", //"Era esperado print",
-                "esperado (", //"Era esperado \"(\"",
-                "esperado )", //"Era esperado \")\"",
-                "esperado ==", //"Era esperado \"==\"",
-                "esperado !=", //"Era esperado \"!=\"",
-                "esperado <", //"Era esperado \"<\"",
-                "esperado <=", //"Era esperado \"<=\"",
-                "esperado >", //"Era esperado \">\"",
-                "esperado >=", //"Era esperado \">=\"",
-                "esperado +", //"Era esperado \"+\"",
-                "esperado -", //"Era esperado \"-\"",
-                "esperado *", //"Era esperado \"*\"",
-                "esperado /", //"Era esperado \"/\"",
-                "esperado //", //"Era esperado \"//\"",
-                "esperado &", //"Era esperado \"%\"",
-                "esperado ,", //"Era esperado \",\"",
-                "esperado :", //"Era esperado \":\"",
-                "esperado =", //"Era esperado \"=\"",
-                "esperado +=", //"Era esperado \"+=\"",
-                "esperado -=", //"Era esperado \"-=\"",
-                "esperado id, if, while, print",//"<programa> invï¿½lido",
-                "esperado id, if, while, print",//"<lista_comandos> invï¿½lido",
-                "esperado EOF, id, if, elif, else, while, end, print",//"<lista_comandos1> invï¿½lido",
-                "esperado id, if, while, print",//"<comando> invï¿½lido",
-                "esperado =, +=, -=",//"<comando1> invï¿½lido",
-                "esperado identificador, tipo, constante, not, input, (, +, -", //"<comando2> invï¿½lido",
-                "esperado input, tipo",//"<entrada_dados1> invï¿½lido",
-                "esperado constante str, )",//"<entrada> invï¿½lido",
-                "esperado tipo", //"<tipo> invï¿½lido",
-                "esperado print",//"<saida_dados> invï¿½lido",
-                "esperada uma expressÃ£o", //"<lista_expressoes> invï¿½lido",
-                "esperado ), ','", //"<lista_expressoes1> invï¿½lido",
-                "esperado if",//"<selecao> invï¿½lido",
-                "esperado elif, else, end",//"<senao_se> invï¿½lido",
-                "esperado else, end",//"<senao> invï¿½lido",
-                "esperado while",//"<repeticao> invï¿½lido",
-                "esperado uma expressÃ£o",//"<expressao> invï¿½lido",
-                "esperado uma expressÃ£o",//"<expressao_> invï¿½lido", // espressao
-                "esperado uma expressÃ£o",//"<elemento> invï¿½lido", // espressao
-                "esperado uma expressÃ£o",//"<relacional> invï¿½lido", // espressao
-                "esperado uma expressÃ£o",//"<relacional1> invï¿½lido", // espressao
-                "esperado uma expressÃ£o",//"<operador_relacional> invï¿½lido", // espressao
-                "esperado uma expressÃ£o",//"<aritmetica> invï¿½lido", // espressao
-                "esperado uma expressÃ£o",//"<aritmetica_> invï¿½lido",  // espressao
-                "esperado uma expressÃ£o",//"<termo> invï¿½lido",  // espressao
-                "esperado uma expressÃ£o",//"<termo_> invï¿½lido",  // espressao
-                "esperado uma expressÃ£o",//"<fator> invï¿½lido"  // espressao
-            };
+    String[] PARSER_ERROR =
+    {
+        "",
+        "Era esperado fim de programa",
+        "Era esperado id",
+        "Era esperado cint",
+        "Era esperado cfloat",
+        "Era esperado cstr",
+        "Era esperado and",
+        "Era esperado or",
+        "Era esperado not",
+        "Era esperado if",
+        "Era esperado elif",
+        "Era esperado else",
+        "Era esperado while",
+        "Era esperado end",
+        "Era esperado false",
+        "Era esperado true",
+        "Era esperado input",
+        "Era esperado int",
+        "Era esperado float",
+        "Era esperado str",
+        "Era esperado print",
+        "Era esperado \"(\"",
+        "Era esperado \")\"",
+        "Era esperado \"==\"",
+        "Era esperado \"!=\"",
+        "Era esperado \"<\"",
+        "Era esperado \"<=\"",
+        "Era esperado \">\"",
+        "Era esperado \">=\"",
+        "Era esperado \"+\"",
+        "Era esperado \"-\"",
+        "Era esperado \"*\"",
+        "Era esperado \"/\"",
+        "Era esperado \"//\"",
+        "Era esperado \"%\"",
+        "Era esperado \",\"",
+        "Era esperado \":\"",
+        "Era esperado \"=\"",
+        "Era esperado \"+=\"",
+        "Era esperado \"-=\"",
+        "<programa> inválido",
+        "<lista_comandos> inválido",
+        "<lista_comandos1> inválido",
+        "<comando> inválido",
+        "<comando1> inválido",
+        "<comando2> inválido",
+        "<entrada_dados1> inválido",
+        "<entrada> inválido",
+        "<tipo> inválido",
+        "<saida_dados> inválido",
+        "<lista_expressoes> inválido",
+        "<lista_expressoes1> inválido",
+        "<selecao> inválido",
+        "<senao_se> inválido",
+        "<senao> inválido",
+        "<repeticao> inválido",
+        "<expressao> inválido",
+        "<expressao_> inválido",
+        "<elemento> inválido",
+        "<relacional> inválido",
+        "<relacional1> inválido",
+        "<operador_relacional> inválido",
+        "<aritmetica> inválido",
+        "<aritmetica_> inválido",
+        "<termo> inválido",
+        "<termo_> inválido",
+        "<fator> inválido"
+    };
 }

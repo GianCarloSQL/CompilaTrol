@@ -12,6 +12,9 @@ public class Semantico implements Constants {
     private String tipovar;
     private ArrayList<String> listaid = new ArrayList<>();
     private HashMap<String, String> TS = new HashMap<>();
+    private ArrayList<String> lista_rotulos = new ArrayList<>();
+    private int qtdRotulos = 1;
+    private String operador_atribuicao = "";
     String id = "";
     String tipo = "";
     String tipoid = "";
@@ -150,52 +153,244 @@ public class Semantico implements Constants {
                 codigo += "ret}} \n";
                 break;
             case 17:
+                String tipo1 = pilha_de_tipos.pop();
+                String tipo2 = pilha_de_tipos.pop();
+                if ((tipo1 != "bool") || (tipo2 != "bool")) {
+                    throw new SemanticError("Tipos incompatíveis em expressão lógica");
+                } else {
+                    pilha_de_tipos.push("bool");
+                    codigo += "and \n";
+                }
                 break;
             case 18:
+                String tipo_1 = pilha_de_tipos.pop();
+                String tipo_2 = pilha_de_tipos.pop();
+                if ((tipo_1 != "bool") || (tipo_2 != "bool")) {
+                    throw new SemanticError("Tipos incompatíveis em expressão lógica");
+                } else {
+                    pilha_de_tipos.push("bool");
+                    codigo += "or \n";
+                }
 
                 break;
             case 19:
-
+                String tipo1_19 = pilha_de_tipos.pop();
+                String tipo2_19 = pilha_de_tipos.pop();
+                if (tipo1_19.equals("int64") && tipo2_19.equals("int64")) {
+                    pilha_de_tipos.push("int64");
+                } else {
+                    throw new SemanticError("tipos incompativeis");
+                }
+                codigo += "div \n";
                 break;
             case 20:
-
+                String tipo1_20 = pilha_de_tipos.pop();
+                String tipo2_20 = pilha_de_tipos.pop();
+                if (tipo1_20.equals("int64") && tipo2_20.equals("int64")) {
+                    pilha_de_tipos.push("int64");
+                } else {
+                    throw new SemanticError("tipos incompativeis");
+                }
+                codigo += "rem \n";
                 break;
             case 21:
+                pilha_de_tipos.push("string");
+                codigo += "ldstr " + token.getLexeme().replace('\'', '\"') + " \n";
+                break;
+            case 22:
+                id = token.getLexeme();
+                break;
+            case 23:
+                operador_atribuicao = token.getLexeme();
+                if ((operador_atribuicao.equals("+=") || operador_atribuicao.equals("-=")) && !id.isEmpty()) {
+                    if (!TS.containsKey(id)) {
+                        throw new SemanticError("Identificador não declarado");
+                    }
 
+                    String tipo_identificador = TS.get(id);
+
+                    codigo += "ldloc " + id + "\n";
+
+                    if (tipo_identificador.equals("int64")) {
+                        codigo += "conv.r8 \n";
+                    }
+                }
+                break;
+            case 24:
+                String tipo_id = "";
+                if (TS.containsKey(id)) {
+                    tipo_id = TS.get(id);
+                    pilha_de_tipos.pop();
+                } else {
+                    tipo_id = pilha_de_tipos.pop();
+                    TS.put(id, tipo_id);
+                    codigo += ".locals(" + tipo_id + " " + id + ") \n";
+                }
+                if (tipo_id == "int64") {
+                    codigo += "conv.i8 \n";
+                }
+                codigo += "stloc " + id + "\n";
+                break;
+            case 25:
+                acao_25(token);
+                break;
+            case 26:
+                acao_26(token);
+                break;
+            case 27:
+                acao_27(token);
+                break;
+            case 28:
+                acao_28(token);
+                break;
+            case 29:
+                acao_29(token);
                 break;
             case 30:
+                acao_30(token);
                 break;
             case 31:
+                acao_31(token);
                 break;
             case 32:
+                acao_32(token);
                 break;
             case 33:
+                acao_33(token);
                 break;
             case 34:
+                acao_34(token);
                 break;
             case 35:
+                String id_acao = token.getLexeme();
+                if (!TS.containsKey(id_acao)) {
+                    throw new SemanticError("Identificador não declarado");
+                }
+                codigo += "ldloc " + id_acao + "\n";
+                String tipo_recuperado_da_tabela = TS.get(id_acao);
+                pilha_de_tipos.push(tipo_recuperado_da_tabela);
+                if (tipo_recuperado_da_tabela == "int64") {
+                    codigo += "conv.r8 \n";
+                }
                 break;
             case 36:
+                switch (operador_atribuicao) {
+                    case "-=":
+                        codigo += "sub";
+                        break;
+                    case "+=":
+                        codigo += "add";
+                        break;
+                }
 
-                break;
-            case 37:
-
-                break;
-            case 38:
-
-                break;
-            case 39:
-
-                break;
-            case 40:
-
-                break;
-            case 41:
-
-                break;
-            case 42:
-
+                if (id == "int64") {
+                    codigo += "conv.i8 \n";
+                }
+                codigo += "stloc " + id + "\n";
                 break;
         }
+    }
+
+    private void acao_25(Token token) {
+        switch (token.getLexeme()) {
+            case "int":
+                tipovar = "int64";
+                break;
+            case "float":
+                tipovar = "float64";
+                break;
+            default:
+                tipovar = "string";
+                break;
+        }
+
+        if (!TS.containsKey(id)) {
+            TS.put(id, tipovar);
+            codigo += ".locals(" + tipovar + " " + id + ") \n";
+        } else {
+            tipovar = TS.get(id);
+        }
+
+    }
+
+    private void acao_26(Token token) {
+        String classe = "";
+
+        if (tipovar == "int64") {
+            classe = "Int64";
+        } else if (tipovar == "float64") {
+            classe = "Double";
+        } else if (tipovar == "bool") {
+            classe = "Boolean";
+        }
+
+        codigo += "call string [mscorlib]System.Console::ReadLine()\n";
+
+        if (tipovar != "string") {
+            codigo += "call " + tipovar + " [mscorlib]System." + classe + "::Parse(string)\n";
+            codigo += "stloc " + id + "\n";
+        }
+    }
+
+    private void acao_27(Token token) {
+        codigo += "brfalse " + gerar_rotulo() + "\n";
+    }
+
+    private void acao_28(Token token) {
+        int qtd = lista_rotulos.size();
+        for (int i = 0; i < qtd; i++) {
+            String rotulo = lista_rotulos.get(i);
+            codigo += rotulo + ":\n";
+        }
+        lista_rotulos.clear();
+    }
+
+    private void acao_29(Token token) {
+        String rotulo = obter_ultimo_rotulo();
+        codigo += "br " + gerar_rotulo() + "\n";
+        codigo += rotulo + ":\n";
+    }
+
+    private void acao_30(Token token) {
+        codigo += "brfalse " + gerar_rotulo() + "\n";
+    }
+
+    private void acao_31(Token token) {
+        String rotulo = obter_ultimo_rotulo();
+        codigo += "br " + gerar_rotulo() + "\n";
+        codigo += rotulo + ":\n";
+    }
+
+    private void acao_32(Token token) {
+        codigo += gerar_rotulo() + ":\n";
+    }
+
+    private void acao_33(Token token) {
+        codigo += "brfalse " + gerar_rotulo() + "\n";
+    }
+
+    private void acao_34(Token token) {
+        codigo += "br " + obter_primeiro_rotulo() + "\n";
+        codigo += obter_primeiro_rotulo() + ":\n";
+    }
+
+    private String gerar_rotulo() {
+        String rotulo = "r" + qtdRotulos;
+        qtdRotulos++;
+        lista_rotulos.add(rotulo);
+        return rotulo;
+    }
+
+    private String obter_primeiro_rotulo() {
+        String rotulo = lista_rotulos.get(0);
+        lista_rotulos.remove(0);
+        return rotulo;
+    }
+
+    private String obter_ultimo_rotulo() {
+        int i = lista_rotulos.size() - 1;
+        String rotulo = lista_rotulos.get(i);
+        lista_rotulos.remove(i);
+        return rotulo;
     }
 }
