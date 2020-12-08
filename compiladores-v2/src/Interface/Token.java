@@ -48,39 +48,36 @@ public class Token {
             case 9: //if
             case 10://elif
             case 11://else
-            case 12://for
-            case 13://in
-            case 14://range
-            case 15: // while
-            case 16: //end
-            case 17: //false
-            case 18: //true
-            case 19: //input
-            case 20: //inteiro
-            case 21: //fracionario
-            case 22: //string
-            case 23: //print
+            case 12: // while
+            case 13: //end
+            case 14: //false
+            case 15: //true
+            case 16: //input
+            case 17: //inteiro
+            case 18: //fracionario
+            case 19: //string
+            case 20: //print
                 tokenDescription = "palavra reservada";
                 break;
-            case 24: //(
-            case 25://)
-            case 26://==
-            case 27: //!=
-            case 28: // <
-            case 29: //<=
-            case 30: //>
-            case 31: //>=
-            case 32: //+
-            case 33: //-
-            case 34: //*
-            case 35: // /
-            case 36: // //
-            case 37: // %
-            case 38: // ,
-            case 39: // :
-            case 40: // =
-            case 41: // +=
-            case 42: // -=
+            case 21: //(
+            case 22://)
+            case 23://==
+            case 24: //!=
+            case 25: // <
+            case 26: //<=
+            case 27: //>
+            case 28: //>=
+            case 29: //+
+            case 30: //-
+            case 31: //*
+            case 32: // /
+            case 33: // //
+            case 34: // %
+            case 35: // ,
+            case 36: // :
+            case 37: // =
+            case 38: // +=
+            case 39: // -=
                 tokenDescription = "símbolo especial";
                 break;
 

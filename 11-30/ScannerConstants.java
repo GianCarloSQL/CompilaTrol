@@ -1,4 +1,3 @@
-package Interface;
 public interface ScannerConstants
 {
     int[] SCANNER_TABLE_INDEXES = 
@@ -1247,28 +1246,26 @@ public interface ScannerConstants
         {122, 20}
     };
 
-    int[] TOKEN_STATE = {-2,  0, -1, -1,  0, 34, -1, 21, 22, 31, 29, 35, 30, 32,  3, 36, 25, 37, 27, -2,  2, 24,  5, 38, 39, 33, -1, 26, 23, 28, -2, -1,  2,  4, -2,  2,  0 };
+    int[] TOKEN_STATE = {-2,  0, -1, -1,  0, 37, -1, 24, 25, 34, 32, 38, 33, 35,  3, 39, 28, 40, 30, -2,  2, 27,  5, 41, 42, 36, -1, 29, 26, 31, -2, -1,  2,  4, -2,  2,  0 };
 
     int[] SPECIAL_CASES_INDEXES =
-        { 0, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 };
+        { 0, 0, 0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18 };
 
     String[] SPECIAL_CASES_KEYS =
-        {  "and", "elif", "else", "end", "false", "float", "if", "input", "int", "not", "or", "print", "str", "true", "while" };
+        {  "and", "elif", "else", "end", "false", "float", "for", "if", "in", "input", "int", "not", "or", "print", "range", "str", "true", "while" };
 
     int[] SPECIAL_CASES_VALUES =
-        {  6, 10, 11, 13, 14, 18, 9, 16, 17, 8, 7, 20, 19, 15, 12 };
+        {  6, 10, 11, 16, 17, 21, 12, 9, 13, 19, 20, 8, 7, 23, 14, 22, 18, 15 };
 
-      String[] SCANNER_ERROR =
+    String[] SCANNER_ERROR =
     {
-        "Simbolo invalido",
+        "Caractere não esperado",
         "",
-        "Simbolo \"!=\" invalido",
-        "constante str invalida ou nao finalizada",
-        "",
-        "",
-        "constante str invalida ou nao finalizada",
+        "Erro identificando \"!=\"",
+        "Erro identificando cstr",
         "",
         "",
+        "Erro identificando cstr",
         "",
         "",
         "",
@@ -1279,7 +1276,9 @@ public interface ScannerConstants
         "",
         "",
         "",
-        "comentario de bloco ou de linha iniciado e nao finalizado",
+        "",
+        "",
+        "Erro identificando <ignorar>",
         "",
         "",
         "",
@@ -1290,7 +1289,7 @@ public interface ScannerConstants
         "",
         "",
         "",
-        "comentario de bloco ou de linha iniciado e nao finalizado",
+        "Erro identificando <ignorar>",
         "Erro identificando id",
         "",
         "",

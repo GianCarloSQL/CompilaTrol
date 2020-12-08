@@ -1,0 +1,163 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Compact
+Input = String
+Parser = LL
+#RegularDefinitions
+min: [a-z]
+
+dig: [0-9]
+
+inteiro: {dig}+
+
+fracionario: \. {inteiro}
+
+str_simples: ' [^'\n\\]* '
+
+str_dupla: \" [^\"\n]* \"
+
+comentario_linha: # [^\n]*
+
+comentario_bloco: \[ \n [^\[\]]* \n \]
+#Tokens
+id: {min} (({min} | dig)? _? ({min} | {dig}))*
+
+cint: {inteiro}
+
+cfloat: {inteiro} {fracionario}
+
+cstr: {str_simples} | {str_dupla}
+
+// palavras reservadas
+and   = id: "and"
+or    = id: "or"
+not   = id: "not"
+if    = id: "if"
+elif  = id: "elif"
+else  = id: "else"
+while = id: "while"
+end   = id: "end"
+false = id: "false"
+true  = id: "true"
+input = id: "input"
+int   = id: "int"
+float = id: "float"
+str   = id: "str"
+print = id: "print"
+
+// simbolos especiais
+"("
+")"
+"=="
+"!="
+"<"
+"<="
+">"
+">="
+"+"
+"-"
+"*"
+"/"
+"//"
+"%"
+","
+":"
+"="
+"+="
+"-="
+
+// comentarios: linha e bloco - reconhecer e ignorar
+:! {comentario_linha}
+:! {comentario_bloco}
+
+// caracteres de formatação - reconhecer e ignorar
+: [\s\t\n]
+#NonTerminals
+<programa>
+<lista_comandos>
+<lista_comandos1>
+<comando>
+<comando1>
+<comando2>
+<entrada_dados1>
+<entrada>
+<tipo>
+<saida_dados>
+<lista_expressoes>
+<lista_expressoes1>
+<selecao>
+<senao_se>
+<senao>
+<repeticao>
+<expressao>
+<expressao_>
+<elemento>
+<relacional>
+<relacional1>
+<operador_relacional>
+<aritmetica>
+<aritmetica_>
+<termo>
+<termo_>
+<fator>
+
+#Grammar
+<programa> ::= #15 <lista_comandos> #16;
+
+<lista_comandos> ::= <comando> <lista_comandos1>;
+
+<lista_comandos1> ::= <lista_comandos> | î;
+
+<comando> ::= id #22 <comando1> | <saida_dados> | <selecao> | <repeticao>;
+
+<comando1> ::= "=" <comando2> | "+=" #23 <expressao> #36 | "-=" #23 <expressao> #36;
+
+<comando2> ::= <expressao> #24 | <entrada_dados1>;
+
+<entrada_dados1> ::= #25 input "(" <entrada> ")" #26 | <tipo> #25 "(" input "(" <entrada> ")" ")" #26;
+
+<entrada> ::= cstr #21 #14 | î;
+
+<tipo> ::= int | float | str;
+
+<saida_dados> ::= print "(" <lista_expressoes> ")";
+
+<lista_expressoes> ::= <expressao> #14 <lista_expressoes1>;
+
+<lista_expressoes1> ::= "," <lista_expressoes> | î;
+
+<selecao> ::= if <expressao> #27 ":" <lista_comandos> <senao_se> <senao> end #28;
+
+<senao_se> ::= #29 elif <expressao> #30 ":" <lista_comandos> <senao_se> | î;
+
+<senao> ::= #31 else ":" <lista_comandos> | î;
+
+<repeticao> ::= #32 while <expressao> #33 ":" <lista_comandos> end #34;
+
+<expressao> ::= <elemento> <expressao_>;
+
+<expressao_> ::= and <elemento> #17 <expressao_> | or <elemento> #18 <expressao_> | î;
+
+<elemento> ::= <relacional> | true #11 | false #12 | not <elemento> #13;
+
+<relacional> ::= <aritmetica> <relacional1>;
+
+<relacional1> ::= <operador_relacional> #9 <aritmetica> #10 | î;
+
+<operador_relacional> ::= "==" | "!=" | "<" | "<=" | ">" | ">=";
+
+<aritmetica> ::= <termo> <aritmetica_>;
+
+<aritmetica_> ::= "+" <termo> #1 <aritmetica_> | "-" <termo> #2 <aritmetica_> | î;
+
+<termo> ::= <fator> <termo_>;
+
+<termo_> ::= "*" <fator> #3 <termo_> | "/" <fator> #4 <termo_> | "//" <fator> #19 <termo_> | "%" <fator> #20 <termo_> | î;
+
+<fator> ::= id #35 | cint #5 | cfloat #6 | cstr #21 | "(" <expressao> ")" | "+" <fator> #7 | "-" <fator> #8;

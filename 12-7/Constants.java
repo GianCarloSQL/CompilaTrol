@@ -1,20 +1,18 @@
-package Interface;
-
-public interface Constants extends ScannerConstants
+public interface Constants extends ScannerConstants, ParserConstants
 {
     int EPSILON  = 0;
     int DOLLAR   = 1;
 
-    int t_id = 2;     // identificador
-    int t_cint = 3;   // inteiro
-    int t_cfloat = 4; // float
-    int t_cstr = 5;   // string
-    int t_and = 6;    // and
-    int t_or = 7;     // or
-    int t_not = 8;	  // not
-    int t_if = 9;     // if
-    int t_elif = 10;  // elif
-    int t_else = 11;  // else
+    int t_id = 2;
+    int t_cint = 3;
+    int t_cfloat = 4;
+    int t_cstr = 5;
+    int t_and = 6;
+    int t_or = 7;
+    int t_not = 8;
+    int t_if = 9;
+    int t_elif = 10;
+    int t_else = 11;
     int t_while = 12;
     int t_end = 13;
     int t_false = 14;

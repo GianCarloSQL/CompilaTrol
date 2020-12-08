@@ -1,4 +1,3 @@
-package Interface;
 public interface ScannerConstants
 {
     int[] SCANNER_TABLE_INDEXES = 
@@ -1258,17 +1257,15 @@ public interface ScannerConstants
     int[] SPECIAL_CASES_VALUES =
         {  6, 10, 11, 13, 14, 18, 9, 16, 17, 8, 7, 20, 19, 15, 12 };
 
-      String[] SCANNER_ERROR =
+    String[] SCANNER_ERROR =
     {
-        "Simbolo invalido",
+        "Caractere não esperado",
         "",
-        "Simbolo \"!=\" invalido",
-        "constante str invalida ou nao finalizada",
-        "",
-        "",
-        "constante str invalida ou nao finalizada",
+        "Erro identificando \"!=\"",
+        "Erro identificando cstr",
         "",
         "",
+        "Erro identificando cstr",
         "",
         "",
         "",
@@ -1279,7 +1276,9 @@ public interface ScannerConstants
         "",
         "",
         "",
-        "comentario de bloco ou de linha iniciado e nao finalizado",
+        "",
+        "",
+        "Erro identificando <ignorar>",
         "",
         "",
         "",
@@ -1290,7 +1289,7 @@ public interface ScannerConstants
         "",
         "",
         "",
-        "comentario de bloco ou de linha iniciado e nao finalizado",
+        "Erro identificando <ignorar>",
         "Erro identificando id",
         "",
         "",
